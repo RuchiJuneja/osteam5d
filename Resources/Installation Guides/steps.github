@@ -1,0 +1,44 @@
+# Author		:	Raghav Bali
+# Date			: 	Jan 31 2013
+
+
+Steps for GitHub :
+
+create an account on github.com
+sudo apt-get install git
+git config --global user.name "username"
+git config --global user.email "email id"
+
+
+
+
+For setting up repository
+-----------------------------
+touch README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/raghavbali/osteam5d.git
+git push -u origin master
+
+
+
+For Collaboration
+-------------------------
+git init
+git config --global user.name "username"
+git config --global user.email "email id"
+git remote add origin https://github.com/raghavbali/osteam5d.git
+git pull origin master
+
+
+
+General Steps
+--------------------
+To add a document
+git add <filename> / git rm <filename>
+git commit -m "message"
+git push origin master
+
+
+
