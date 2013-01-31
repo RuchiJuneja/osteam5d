@@ -1,0 +1,265 @@
+\documentclass[a4page,12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[nottoc]{tocbibind}
+\usepackage[nouppercase,headsepline,footsepline,plainfootsepline]{scrpage2}
+\automark{section}
+
+
+\begin{document}
+\pagenumbering{gobble}
+%--------------------------------Title Page---------------------------------%
+\begin{titlepage}
+
+\begin{center}
+
+\textup{\large Project 5d}\\[1.0cm]
+
+% Title
+\uppercase{\Large \textbf {Payment for Cloud Services Using BitCoins}}\\[3.0cm]
+
+% Done by
+\normalsize \textbf{Guide : Prof. Shrisha Rao}\\
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Name  & Roll Number  & Email  & Contact \tabularnewline
+\hline 
+MT2012060  & Ranadheer K  &  ranadheer.kakkireni@iiitb.org  & 8884691496 \tabularnewline
+\hline 
+MT2012070  & Kurada Sravya  & sravya.kurada@iiitb.org  & 9880394890 \tabularnewline
+\hline 
+MT2012108  & Raghav Bali  & raghav.bali@iiitb.org  & 9591441618 \tabularnewline
+\hline 
+MT2012118  & Ruchi Juneja  & ruchi.juneja@iiitb.org  & 9980963008 \tabularnewline
+\hline 
+MT2012161  & Vijay Huddar  & vijay.huddar@iiitb.org  & 9739533192 \tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+TeamLead : Raghav Bali
+\vfill
+
+% Bottom of the page
+%\includegraphics[width=0.20\textwidth]{./nitc-logo}\\[1cm]
+\normalsize
+%\textsc{International Institute of Information Technology Bangalore}\\
+\end{center}
+
+\end{titlepage}
+\pagebreak
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\tableofcontents
+\pagenumbering{arabic}
+\pagebreak
+\section{Introduction}
+Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction\cite{nist}.\\\\
+The payments done for usage of such services via credit/debit cards pass through a central agency (like a bank) which authorizes and in some cases even a transaction fee is charged. Such agencies, under various circumstances have the right to restrict access to their services. There might also be cases where some places may not have a presence for such service or may not have an option for payments in their local currency. Scenarios like these bring down the advantages that Cloud offers.
+\\\\
+BitCoins, a digital currency can be used to overcome such impediments. It is a decentralized peer-peer currency. It is highly secure and carries minimum transactional cost. It even allows for direct client to business payment without the involvement of any third party in between.\\
+\section{Project Description}
+\vspace{0.2 in}
+\subsection{Objective}
+The objective of this project is to develop a BitCoin API based payment module and integrate it with a cloud service to enable users to make payments directly in BitCoins.
+\vspace{0.2 in}
+\subsection{Description}
+\subsubsection{BitCoins}
+Bitcoin\cite{bitcoinpaper} is an open source  peer-peer digital currency that enables instant payment without any central authority which monitors the transactions . The necessity of a trusted third party inorder to ensure reliable transactions is sidelined by the use of bitcoins.\\
+\begin{itemize}
+\item Why Bitcoins?
+\begin{itemize}
+\item Reliable transactions.
+\item Strong control of ownership.
+\item No need of a trusted third party.
+\item Minimal transaction fees.\\
+\end{itemize}
+\item How Bitcoins work ?
+\begin{itemize}
+\item Each owner transfers a coin by digitally signing a hash and public key of next owner.
+\item New transactions will be publicly announced .
+\item A payee can verify the signatures to verify the chain of ownership. 
+\item The payee accepts the payment if majority of nodes agrees that its the first received. 
+\end{itemize}
+\end{itemize}
+\vspace{0.3 in}
+BitCoins as an alternative currency can be employed for various online (in some cases offline) paid services and products. Our project aims at exploring the option of developing a payment solution wherein we explore cloud service payment using BitCoins.\\
+\linebreak
+The project will consist of a payment module integrated with a cloud service. This module will be based on BitCoin Application Programming Interface (API) which helps us utilize the BitCoin community network for payment acceptance and its verification. The user will be provided with a cloud service on pay per use basis. The payments accepted by the system will be only in BitCoins.
+\section{Existing Products and Gap Analysis}
+\vspace{0.3 in}
+\begin{itemize}
+\item \textbf{Existing Products}\\\\
+Using Bitcoins for Cloud based services is not a new concept. The following are examples of virtual private server providers which accept payments via BitCoins.
+\begin{enumerate}
+\item Dewlance Windows VPS and Hosting. BitCoins for Cloud
+\item Yoku Cloud Hosting and Cloud Servers 
+\item Optical Cube Web Hosting, VPS and IT consulting. 
+\item Tailored VPS \\\\
+\end{enumerate}
+\item \textbf{Gap Analysis}
+\\\\
+Cloud Computing encapsulates a range of different technologies that have developed through the evolution of commercial computing \cite{gapCloud}.\\
+Software as a service is a software delivery model in which software and associated data are centrally hosted on the cloud\cite{saas}.\\\\
+Payments to these software services involve real money and are usually made through payment gateways using credit/debit cards.\\\\
+Bitcoins, a peer-peer decentralized digital currency stands as an effective alternative to carry out payments to any services availed by the client .\\\\
+The use of powerful cryptography and the concept of "block-chains" inorder to prevent double-spending makes bitcoins even more reliable. Ease of use, security, minimal transaction charges of bitcoins justifies the idea of using them in the existing "software as a service" cloud computing scenario.\\\\
+This project aims to "build a cloud which accepts payment through bitcoins". In other words, a cloud which provides software services is built and clients who use those services are expected to pay in terms of bitcoins.\\
+\end{itemize}
+\section{Architecture and Design}
+\begin{figure}[hbtp]
+\caption{System Architecture}
+\includegraphics[width=5.5in,height=4.0in]{design.jpg}
+\end{figure}
+\vspace{0.3 in}
+As seen in the above mentioned figure, Virtual machines(VM's), on Server 2, run the OS as a service and this deployed service on Eucalyptus Cloud will accept payment in BitCoins using BitCoins API.\\
+We propose two server architecture for Eucalyptus cloud deployment. Eucalyptus is a software available under GPL that helps in creating and managing a private or even a publicly accessible cloud. We install Eucalyptus Cloud over CentOS.\\\\
+Client's request to access the hosted service must pass through server 1. Server 1 will act as frontend which has all the information about the services hosted on server 2.\\\\
+\textbf{Components of Server 1 and their Functionality}\cite{userguide}: 
+\begin{itemize}
+\item Cloud Controller (CLC):\\\\
+Monitor the availability of resources on various components of the cloud infrastructure and the cluster controllers that manage the hypervisor nodes. Deciding which clusters will be used for provisioning the instances and Monitoring the running instances.
+Cloud Controller is front end for the collection of computers/servers we have set up. It CLC provides an web services interface to the client on one side and interacts with the rest of the components of the Eucalyptus infrastructure on the other side.\\
+\item Cluster Controller (CC):\\\\
+Node Controllers basically get themselves registered to CC. Cluster Controllers are one that
+manages the number of Node Controllers and deploys or manages the instance on them.
+CC has two important functions:
+\begin{itemize}
+\item Receive requests from CLC to deploy instances and it must choose which NC should deploy this instance.
+\item To report the information gathered from the NC to CLC.\\
+\end{itemize}
+\item Walrus Storage Controller (WS3):\\\\
+It is a simple file storage system. WS3 stores the the machine images. It also stores and serves files using S3 APIs%\citation [http://mdshaonimran.wordpress.com/tag/eucalyptus-components/].
+\item Storage Controller (SC):\\\\
+SC provides persistent block storage for use by the instances.
+\end{itemize}
+\textbf{Components of Server 2 and their Functionality:}\\
+\begin{itemize}
+\item Node Controller (NC):\\\\
+Server 2 is capable of running KVM as the hypervisor. Hypervisor is one that provides a uniform environment for different virtual machines to run.%\citation(HTTP://WWW.EUCALYPTUS.COM/WHAT-IS-CLOUD-COMPUTING).
+A virtual machine is nothing but implementation of machine in software mode. Virtual Machine has its own kernel, OS and applications.%\citation(HTTP://WWW.EUCALYPTUS.COM/WHAT-IS-CLOUD-COMPUTING).
+Virtual Machines running on Hypervisors are called instances \cite{cloudbible}.
+%\citation[Barrie Sosinsky, Cloud Computing Bible. Wiley Publishing, 2011.].
+Node Controller interacts with 3 other components, namely the OS , Hypervisor and cluster controller (installed on Server1). NC gathers the information from the OS to learn about the VM instance running on the current node, number of cores, the size of memory and disk space. It then transmits this information to Cluster Controller.\\
+\end{itemize}
+To initiate a payment for service(s) used, the user generates a payment address using the BitCoin client (installed on client machine). This address is then used to transfer/pay the amount due. The server 2 uses BitCoin API to accept the payment, which then authenticates it using the BitCoin peer-peer network.\\
+\section{Development Plan}
+\textbf{\\Phase 1}
+\begin{itemize}
+\item \textbf{Server1 Setup}:
+\begin{itemize}
+\item Install the cloud using CentOS, which is pre-shipped with Eucalyptus.
+\item Configure Cloud Controller, Walrus, Cluster Controller and Storage Controller.
+\end{itemize}
+\end{itemize}
+\textbf{\\Phase 2}
+\begin{itemize}
+\item \textbf{Server2 Setup}:
+\begin{itemize}
+\item Install and Configure the Hypervisor.
+\item Load Eucalyptus pre-packaged virtual machines on the cloud.
+\item Register the loaded machine image with Eucalyptus.
+\end{itemize}
+\end{itemize}
+\textbf{\\Phase 3}
+\begin{itemize}
+\item Run the loaded instance, which in turn runs a virtual machine that has an operational private computer that contains an operating system, applications, network accessibility, and disk drives to deploy the cloud.
+\end{itemize}
+\textbf{\\Phase 4}
+\begin{itemize}
+\item Deploy the Application on top of cloud.\\
+\end{itemize}
+\textbf{Phase 5}
+\begin{itemize}
+\item Integrate BitCoin APIs with the Application deployed.
+\end{itemize}
+\textbf{\\Phase 6}
+\begin{itemize}
+\item Set up Bitcoin Client on the Client Machine.
+\item Test usage payment via BitCoins.
+\end{itemize}
+\textbf{\\Phase 7}
+\begin{itemize}
+\item Integration and testing :\\
+Testing the application to make sure it meets the goals that are setup.
+\end{itemize}
+\pagebreak
+\section{Timeline}
+The milestones with estimated completion dates for our project
+\begin{table}[h]
+\begin{tabular}{|c|p{8cm}|c|}
+\hline 
+Milestone & Task & Due Date \tabularnewline
+\hline
+\hline
+Phase 1 & \parbox{8cm}{ First draft of the goals statement.\\
+Background study begins.}& 18-Jan-2013
+\tabularnewline
+\hline
+Phase 2 & \parbox{8cm}{ Addressing review comments on the  goal statement and finalize the same.\\
+Background study completed.\\
+SVN repositories setup.\\
+Setting up Eucalyptus Cloud Server 1 and its configuration.
+} & 28-Jan-2013
+\tabularnewline
+\hline
+Phase 3 & \parbox{8cm}{ Setup Server 2 with Hypervisor and Virtual Machine image.} & 30-Jan-2013
+\tabularnewline
+\hline
+Phase 4  & 
+\parbox{8cm}{ Brief presentation of architecture and project plan.}
+&  5-Feb-2013
+\tabularnewline
+\hline 
+Phase 5 & \parbox{8cm}{Integrate BitCoin API with deployed service.\\
+Setup and configure Client Machine.}
+ & 20-Feb-2013
+\tabularnewline
+\hline 
+Phase 6 & Detailed mid-term reviews of project. & 5-Mar-2013
+\tabularnewline
+\hline 
+Phase 7 & Integration and testing of overall system. & 20-Mar-2013
+\tabularnewline
+\hline 
+Phase 8 & \parbox{8cm}{Beta releases due.\\
+Second detailed reviews.\\
+First draft of final documents due.\\ }&2-Apr-2013
+\tabularnewline
+\hline 
+Phase 9 & Project completions and Final reviews, Submissions of project papers and reports.  & 18-Apr-2013
+\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+\pagebreak
+%\section{References}
+%\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{xx}
+\bibitem{nist} 
+Peter Mell, Timothy Grance, ``The NIST Definition of Cloud Computing, '' 2011. [Online]. Available: \url{csrc.nist.gov/publications/ nistpubs/800-145/SP800-145.pdf}.
+\bibitem{bitcoinpaper} 
+S. Nakamoto, ``Bitcoin: A Peer-to-Peer Electronic Cash System, '' 2008. [Online]. Available: \url{http://bitcoin.org/bitcoin.pdf}. 
+\bibitem{gapCloud}
+Graeme Philipson (July 2012), \textit{Why cloud is important}. [Online]. Available: \url{http://www.itwire.com/2012-06-01-13-40-03/browse/c-level/55713-why-cloud-computing-is-important}.
+\bibitem{saas}
+Ania  Monaco (June 2012), \textit{A view inside the cloud}. [Online]. Available: 
+\url{http://theinstitute.ieee.org/technology-focus/technology-topic/a-view-inside-the-cloud}.
+\bibitem{userguide}
+Eucalyptus Systems. (2012, June 25). \textit{User's Guide Enterprise Edition 2.0}
+[Online]. Available: \url{http://www.eucalyptus.com/docs/2.0/ug-ee.pdf}.
+\bibitem{cloudbible}
+Barrie Sosinsky, ``Understanding Cloud Architecture,'' in \textit{Cloud Computing Bible}, Indianapolis: Wiley, 2011, ch. 3,pp. 45-64.
+\bibitem{cloudarchitecture}
+Eucalyptus Systems. (2012, June 25). \textit{Eucalyptus 3.1.0 Installation Guide} . [Online]. Available:
+\url{www.eucalyptus.com/docs/3.1/ig-3.1.0.pdf}.
+\end{thebibliography}
+\end{document}
