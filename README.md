@@ -3,7 +3,10 @@ Team : 5d
 
 Project Timeline :
 3.	Meetup II		: Jan 14 2013
-	Description		: 
+	Description		: The following points were worked upon/discussed in the meeting :
+					a. Did discussion on the topics studied as per delegated work
+					b. Started work on first draft
+					c. Selected Team Lead
 
 
 2. 	Meetup I 		: Jan 12 2013
