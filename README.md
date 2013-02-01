@@ -2,6 +2,12 @@ Readme file for OS Project
 Team : 5d
 
 Project Timeline :
+4.	Meetup III		: Jan 16 2013
+	Description 		: The following points were worked upon/discussed in the meeting :
+					a. Posted first wiki update with team details 
+					b. Studied cloud architecture in detail for gaol document purpose
+					c. Inmproved the goal document 
+			
 3.	Meetup II		: Jan 14 2013
 	Description		: The following points were worked upon/discussed in the meeting :
 					a. Did discussion on the topics studied as per delegated work
