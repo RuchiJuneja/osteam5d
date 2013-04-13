@@ -1,0 +1,269 @@
+\documentclass[a4page,12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[nottoc]{tocbibind}
+\usepackage[nouppercase,headsepline,footsepline,plainfootsepline]{scrpage2}
+\automark{section}
+
+
+\begin{document}
+\pagenumbering{gobble}
+%--------------------------------Title Page---------------------------------%
+\begin{titlepage}
+
+\begin{center}
+\uppercase{\Large \textbf{Payment for Cloud Services Using BitCoins}}\\[3.0cm]
+
+% Done by
+\normalsize Ranadheer K \\
+ranadheer.kakkireni@iiitb.org\\[0.5cm]
+Kurada Sravya\\
+sravya.kurada@iiitb.org\\[0.5cm]
+Raghav Bali\\
+raghav.bali@iiitb.org\\[0.5cm]
+Ruchi Juneja\\
+ruchi.juneja@iiitb.org\\[0.5cm]
+Vijay Huddar\\
+vijay.huddar@iiitb.org\\[6.0cm]
+
+
+Technical Report IIITB-OS-2012-5D
+April 2013
+
+\vfill
+
+% Bottom of the page
+%\includegraphics[width=0.20\textwidth]{./nitc-logo}\\[1cm]
+\normalsize
+%\textsc{International Institute of Information Technology Bangalore}\\
+\end{center}
+
+\end{titlepage}
+\pagebreak
+\textbf{\Large\\Abstract}\\[0.5cm]
+Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah \\
+Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah \\
+Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah \\
+Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah\\[12.0cm]
+\copyright 2013 Ranadheer K, Kurada Sravya, Raghav Bali, Ruchi Juneja and Vijay Huddar. This material is available under the Creative Commons Attribution-Noncommercial-Share Alike License. See http://creativecommons.org/licenses/by-nc-sa/3.0/ for details.
+\pagebreak
+\textbf{\Large\\Acknowledgement}\\[0.5cm]
+Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah \\
+Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah \\
+Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah \\
+Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah\\[15.0cm]
+\pagebreak
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\tableofcontents
+\pagenumbering{arabic}
+\pagebreak
+\section{Introduction}
+Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction[1].\\\\
+The payments done for usage of such services via credit/debit cards pass through a central agency (like a bank) which authorizes and in some cases even a transaction fee is charged. Such agencies, under various circumstances have the right to restrict access to their services. There might also be cases where some places may not have a presence for such service or may not have an option for payments in their local currency. Scenarios like these bring down the advantages that Cloud offers.\\\\
+BitCoins, a digital currency can be used to overcome such impediments. It is a decentralized peer-peer currency. It is highly secure and carries minimum transactional cost. It even allows for direct client to business payment without the involvement of any third party in between.\\\\
+The objective of this project is to develop a BitCoin API based payment module and integrate it with a cloud service to enable users to make payments directly in BitCoins.\\\\
+For the project, we work with the following assumptions:
+\begin{enumerate}
+\item The client has Bitcoin wallet in his system
+\item Client knows how to generate PGP public and private key pair.
+\item PGP encryption is a safe mode of encryption and decryption
+\end{enumerate}
+\section{Project Description}
+\vspace{0.2 in}
+\subsection{Objective}
+The aim of the project is to develop a BitCoin API based payment module and integrate it with a cloud service to enable users to make payments directly in BitCoins. The project implements IaaS on cloud and provides the client with an instance on a remote system.
+\vspace{0.2 in}
+\subsection{Description}
+\subsubsection{Bitcoins}
+Bitcoin is a peer-to-peer network based digital currency. Peer-to-peer (P2P) means that there is no central authority to issue new money or keep track of transactions. Instead, these tasks are managed collectively by the nodes of the network.\\The necessity of a trusted third party in order to ensure reliable transactions is sidelined by the use of bitcoins.\\\\
+\textbf{Why bitcoins ?}
+\begin{enumerate}
+\item Reliable transactions
+\item Strong control of ownership
+\item No need of a trusted third party
+\item Minimal transaction fees
+\item Common currency in all countries throughout the globe
+\end{enumerate}
+\textbf{How Bitcoins work}
+\begin{enumerate}
+\item As a new user [A], you only need to choose a wallet that you will install on your computer or on your mobile phone. Once you have your wallet installed, it will generate your first Bitcoin address and you can create more whenever you need one. You can disclose one of your Bitcoin addresses to your friends so that they can pay you or vice versa, you can pay your friends if they give you their addresses.
+\item Each owner transfers a coin by digitally signing a hash and public key of next owner
+\item New transactions will be publicly announced 
+\item A payee can verify the signatures to verify the chain of ownership
+\item The payee accepts the payment if majority of nodes agrees that it is the first received
+\end{enumerate}
+\subsubsection{Blockchain}
+The blockchain is a shared public transaction log on which the entire Bitcoin network relies. All confirmed transactions are included in the blockchain with no exception. This way, new transactions can be verified to be spending bitcoins that are actually owned by the spender. The integrity and the chronological order of the blockchain are enforced with cryptography
+\begin{center}
+\begin{figure}[htbp]
+\includegraphics[scale=0.4]{images/bloackchain.jpg}
+\caption{Blockchain}
+\end{figure}
+\end{center}
+\subsubsection{Transaction}
+A transaction is a transfer of value between Bitcoin addresses that gets included in the blockchain. Bitcoin wallets keep a secret piece of data called a private key for each Bitcoin address. Private keys are used to sign transactions, providing a mathematical proof that they come from the owner of the addresses. The signature also prevents the transaction from being altered by anybody once it has been issued.
+BitCoins as an alternative currency can be employed for various online (in some cases offline) paid services and products. Our project aims at exploring the option of developing a payment solution wherein we explore cloud service payment using BitCoins. The project will consist of a payment module integrated with a IaaS cloud service.\\\\
+The project provide the client with a web application named $``$InSTaRS$"$ $($Instance Renting Service$)$ where the client can rent an instance for a particular amount of time based on the metering plans and make payment using BitCoins.
+\section{Existing Products and Gap Analysis}
+\vspace{0.3 in}
+The instance providing services works similar to the Amazon EC2 Reserved Instances that enable you to maintain the benefits of cloud services while lowering costs and reserving capacity. With Reserved Instances you pay a low, one-time fee and in turn receive a significant discount on the hourly charge for that instance.\\ Reserved Instances can provide substantial savings over owning your own hardware or running only On-Demand instances as well as help assure that the capacity you need is available to you when required.\\\\
+Also using Bitcoins for Cloud based services is not a new concept. The following are examples of virtual private server providers which accept payments via BitCoins.
+\begin{itemize}
+\item Dewlance Windows VPS and Hosting. BitCoins for Cloud
+\item Yoku Cloud Hosting and Cloud Servers
+\item Optical Cube Web Hosting, VPS and IT consulting
+\item Tailored VPS
+\end{itemize}
+Cloud Computing encapsulates a range of different technologies that have developed through the evolution of commercial computing [3]. Infrastructure as a service is a provision model in which an organization outsources the equipment used to support operations, including storage, hardware, servers and networking components. The service provider owns the equipment and is responsible for housing, running and maintaining it. The client typically pays on a per-use basis.\\
+Payments to these services involve real money and are usually made through payment gateways using credit/debit cards. Bitcoins, a peer-peer decentralized digital currency stands as an effective alternative to carry out payments to any services availed by the client .The use of powerful cryptography and the concept of "block-chains" in order to prevent double-spending makes bitcoins even more reliable. Ease of use, security, minimal transaction charges of bitcoins justifies the idea of using them in the existing $``$infrastructure as a service$"$ cloud computing scenario.\\
+This project aims to $``$build a cloud which accepts payment through bitcoins$"$. In other words, a cloud which provides infrastructure services is built and clients who use those services are expected to pay in terms of bitcoins.
+\section{Architecture}
+Infrastructure as a Service $($IaaS$)$ provides the consumer with some fundamental computing resources where the  consumer can run arbitrary software .InstaRS is an IaaS application which provides access to a VM instance which runs on Node Controller of Eucalyptus Cloud set up . Eucalyptus is a Linux-based software platform for creating cloud computing systems based on computer clusters. Eucalyptus works with a number of virtualization systems like VMWare, Xen and Kernel Based Virtual Machine $($KVM$)$.\\\\
+\textbf{System Architecture :}
+The system architecture is shown in figure X. The client requests the service through InstaRS Application.BitCoin API is integrated in the application which communicates with the BitCoin peer-peer network to verify the payment made by the client.Once the transaction is successful,the AWS API is used to  spawn the instances on the Node Controller .The client can then perform a ssh login into the instance. Metering for the service is done based on time.The application is designed in such a way that,the instance gets terminated as per the chosen plan and the user will no longerhave access to the instance.\\\\
+\begin{figure}[hbtp]
+\includegraphics[scale=0.35]{images/Architecture.jpg}
+\caption{Architecture}
+\end{figure}
+\textbf{Cloud Architecture :}
+2-tier cloud architecture has been adopted inorder to ensure  scalability and to accomodate large number of customers. This is because the number of backend servers(node controllers) can be increased easily without affecting the overall architecture.\\
+\textbf{Components of Server 1 and their Functionality[5]:}
+\begin{enumerate}
+\item Cloud Controller $($CLC$)$: Monitor the availability of resources on various components of the cloud infrastructure and the cluster controllers that manage the hypervisor nodes. Deciding which clusters will be used for provisioning the instances and Monitoring the running instances. Cloud Controller is front end for the collection of computers/servers we have set up. It CLC provides an web services interface to the client on one side and interacts with the rest of the components of the Eucalyptus infrastructure on the other side.
+\item Cluster Controller $($CC$)$:Node Controllers basically get themselves registered to CC. Cluster Controllers are one that manages the number of Node Controllers and deploys or manages the instance on them. CC has two important functions:
+Receive requests from CLC to deploy instances and it must choose which NC should deploy this instance.
+To report the information gathered from the NC to CLC.
+\item Walrus Storage Controller (WS3): It is a simple le storage system. WS3 stores  the machine images. It also stores and serves files using S3 APIs
+\item Storage Controller (SC): SC provides persistent block storage for use by the instances.
+\end{enumerate}
+Components of Server 2 and their Functionality
+Node Controller $($NC$)$  Server 2 is capable of running KVM as the hypervisor. Hypervisor is one that provides a uniform environment for di\_erent virtual 
+machines to run.A virtual machine is nothing but implementation of machine in software mode. Virtual Machine has its own kernel, OS and applications.Virtual Machines running on Hypervisors are called instances. Node Controller interacts with 3 other components, namely the OS ,Hypervisor and cluster controller $($installed on Server1$)$. NC gathers the information from the OS to learn about the VM instance running on the current node, number of cores, the size of memory and disk space. It then transmits this information to Cluster Controller.
+\pagebreak
+\section{Implementation}
+Implementation of this project is to build the nexus between Bitcoin and cloud technologies. The cloud setup for the project was chosen as Infrastructure as a Service (IaaS) model. The web application acts as a means of user interface for payments in Bitcoins is $``$InStaRS$"$ or Instance Renting Service.  
+The following sections describe in detail the different software components, cloud setup and various APIs used in the process of implementation of this project.
+\subsection{Components}
+The software components for this project can be divided broadly as Cloud Software Components and Bitcoin-Web application Software Components.\\
+\subsubsection{Software Components}
+\begin{itemize}
+\item Eucalyptus\\
+Eucalyptus is open source software for building AWS-compatible private and hybrid clouds. The installation package chosen was Eucalyptus FastStart 3.2.2 which comes preconfigured for CentOS and KVM. This package facilitates installation of Eucalyptus components on CentOS 6.0 , an Enterprise class Linux Distribution, along with AWS compatible addons.
+\item Euca2ools\\
+Euca2ools is a Eucalyptus management utility. It provides with command line based management of various Eucalyptus components like :
+\begin{itemize}
+\item Instance Key Management.
+\item Image Management.
+\item Instance Management.
+\item Network Management.
+\end{itemize}
+Apart from being management utility for cloud setup management, Euca2ools also provides with the necessary interfacing with AWS which is required by the web application to remotely control the cloud as per the client requests.
+\item KVM $-$ Qemu\\
+Kernel Virtual Machine or KVM is a Linux module which allows user programs to utilize hardware virtualization features of the modern processors. Qemu$-$KVM fork is used for x86 machines. It allows us to create multiple virtual machines which run as normal Linux processes.
+\end{itemize}
+\subsection{Bitcoins$-$Web Application Software Components}
+\begin{itemize}
+\item Bitcoin$-$Qt\\
+Bitcoin-Qt is a desktop Bitcoin client application. This comes bundled with bitcoind service. Bitcoin$-$Qt along with bitcoind allows users to maintain a wallet on local system and make transactions. It works by downloading the complete blockchain on the local system, current blockchain size stands at 6400MBs. Bitcoin$-$Qt also allows uses to generate Bitcoin addresses required for any type of Bitcoin transactions.
+\item Bitcoin JSON$-$RPC APIs\\
+Bitcoin supports various APIs to enable merchants or businesses join and make use of the Bitcoin payment network for their daily business transactions. These APIs are available in a variety of programming languages like Python, Ruby, Java etc. These APIs are also available as lightweight and heavy, where heavy APIs make use of local resources for all Bitcoin related activities. For the implementation of payment module of InStaRS, we have made use of JSON APIs provided by blockchain.info network. This set of APIs is lightweight as it utilizes the blockchain.info$'$s infrastructure for Bitcoin transactions. Since local resources are not burdened, the transaction verification process is sped up remarkably as compared to heavy APIs like BitcoinJ. 
+\item Bouncy$-$Castle Open$-$PGP encryption\\
+Bouncy Castle is a collection of lightweight Java APIs used for cryptography. As part of InStaRS$'$s Bitcoin payment module, an extra layer of security based upon Open$-$PGP encryption is implemented using Bouncy Castle API for Open$-$PGP.
+\end{itemize}
+\subsection{System Design}
+This project uses 4 machine configuration to create a private cloud using Eucalyptus integrated with a web server to host the InStaRS web application for payments and cloud control as shown in the below figure :\\
+\begin{itemize}
+\item A web server running the InStaRS web application on Apache Tomcat Server 7.0 using struts2 framework for client interfacing and cloud management.
+\item A front end server, running Eucalyptus Front End components : cloud controller, cluster controller Walrus storage  service and storage controller.
+\item A Back end server also known as Node Controller to run the virtual machines.
+A client system to bundle, test and register the images for the cloud service.
+\end{itemize}
+To showcase the scalability of cloud setup, the split architecture is used. The complete project setup has also been readied and tested with the Back$-$end and Front$-$end systems clubbed onto a single machine. InStaRS is designed in such a manner that with minimum configuration changes, the web application can be made to work in tandem with the monolithic cloud architecture as well.
+\subsection{Cloud Setup}
+The cloud setup is done using three machines - Server1, Server2 and the
+Client.\\
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Hardware & Front$-$End Server & Node Controller$($NC$)$ & Client \tabularnewline
+\hline
+\hline
+CPU & IntelCore i5$($2.67 GHz$)$ & IntelCore i5$($2.67 GHz$)$ & IntelCore i5$($2.67 GHz$)$
+\tabularnewline
+\hline 
+Memory &  &  & 
+\tabularnewline
+\hline 
+Disk Space & 100 GB & 100 GB & 100 GB
+\tabularnewline
+\hline 
+Networking & 100 Mbps & 100 Mbps & 100 Mbps
+\tabularnewline
+\hline 
+\end{tabular}
+\caption{Hardware Configuration}
+\end{table}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+  & Front$-$End Server & Node Controller$($NC$)$\tabularnewline
+\hline
+\hline
+Functionality & LC, SC, CC and Walrus & NC
+\tabularnewline
+\hline 
+Network Interfaces & eth0-EucalyptusN/W & br0-EucalyptusN/W
+\tabularnewline
+\hline 
+IP Addresses & 192.168.12.221 to 192.168.12.240 & NA
+\tabularnewline
+\hline 
+Gateway IP & 192.168.3.254 & 192.168.3.254
+\tabularnewline
+\hline 
+\end{tabular}
+\caption{Network Configuration}
+\end{table}
+The Front-End comprises the Cloud Controller, Cluster Controller, Walrus Storage and Storage Controller. The Node Controller comprises of virtual machine instances. The hardware configuration and the networking configuration of Front$-$End Server, Node Controller$($NC$)$ and the Client are shown in Tables 1 and 2.
+
+\subsubsection{Installation of Node Controllers:}
+\begin{enumerate}
+\item Using the CentOS Fast Start image [reference website] select "Install Node Controller"  as the cloud installation mode. 
+
+\item Node controller is installed before the Front End Server.
+
+\item Use static networking rather than DHCP and provide the IP address as 192.168.12.161 and set the proxy information to 192.168.3.254.
+\end{enumerate}
+
+\pagebreak
+%\section{References}
+%\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{xx}
+\bibitem{nist} 
+Peter Mell, Timothy Grance, ``The NIST Definition of Cloud Computing, '' 2011. [Online]. Available: \url{csrc.nist.gov/publications/ nistpubs/800-145/SP800-145.pdf}.
+\bibitem{bitcoinpaper} 
+S. Nakamoto, ``Bitcoin: A Peer-to-Peer Electronic Cash System, '' 2008. [Online]. Available: \url{http://bitcoin.org/bitcoin.pdf}. 
+\bibitem{gapCloud}
+Graeme Philipson (July 2012), \textit{Why cloud is important}. [Online]. Available: \url{http://www.itwire.com/2012-06-01-13-40-03/browse/c-level/55713-why-cloud-computing-is-important}.
+\bibitem{saas}
+Ania  Monaco (June 2012), \textit{A view inside the cloud}. [Online]. Available: 
+\url{http://theinstitute.ieee.org/technology-focus/technology-topic/a-view-inside-the-cloud}.
+\bibitem{userguide}
+Eucalyptus Systems. (2012, June 25). \textit{User's Guide Enterprise Edition 2.0}
+[Online]. Available: \url{http://www.eucalyptus.com/docs/2.0/ug-ee.pdf}.
+\bibitem{cloudbible}
+Barrie Sosinsky, ``Understanding Cloud Architecture,'' in \textit{Cloud Computing Bible}, Indianapolis: Wiley, 2011, ch. 3,pp. 45-64.
+\bibitem{cloudarchitecture}
+Eucalyptus Systems. (2012, June 25). \textit{Eucalyptus 3.1.0 Installation Guide} . [Online]. Available:
+\url{www.eucalyptus.com/docs/3.1/ig-3.1.0.pdf}.
+\end{thebibliography}
+\end{document}

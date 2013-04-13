@@ -1,0 +1,17 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Project Description}{}
+\BOOKMARK [2][-]{subsection.2.1}{Objective}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Description}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Bitcoins}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Blockchain}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Transaction}{subsection.2.2}
+\BOOKMARK [1][-]{section.3}{Existing Products and Gap Analysis}{}
+\BOOKMARK [1][-]{section.4}{Architecture}{}
+\BOOKMARK [1][-]{section.5}{Implementation}{}
+\BOOKMARK [2][-]{subsection.5.1}{Components}{section.5}
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Software Components}{subsection.5.1}
+\BOOKMARK [2][-]{subsection.5.2}{Bitcoins-Web Application Software Components}{section.5}
+\BOOKMARK [2][-]{subsection.5.3}{System Design}{section.5}
+\BOOKMARK [2][-]{subsection.5.4}{Cloud Setup}{section.5}
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Installation of Node Controllers:}{subsection.5.4}
+\BOOKMARK [1][-]{section*.3}{References}{}
